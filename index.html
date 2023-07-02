@@ -23,15 +23,17 @@
                 font-size: 24px;
                 cursor: pointer;
             }
-            p {
+            textarea {
                 font-size: 40px;
+                border-radius: 16px;
+                height: 250px;
             }
         </style>
     </head>
     <body>
         <img src="./gorilla.png"></img>
         <button onclick="gorilla()">ゴリラになる</button>
-        <p id="result"></p>
+        <textarea id="result" readonly></textarea>
     </body>
 
     <script>
