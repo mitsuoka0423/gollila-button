@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>ゴリラボタン</title>
+        <style>
+            body {
+                display: flex;
+                align-items: center;
+                flex-flow: column;
+                gap: 32px;
+                margin-top: 80px;
+            }
+            img {
+                width: 50%;
+            }
+            button {
+                width: 200px;
+                height: 200px;
+                border-radius: 100px;
+                border: none;
+                background-color: #FFF100;
+                font-size: 24px;
+                cursor: pointer;
+            }
+            p {
+                font-size: 40px;
+            }
+        </style>
+    </head>
+    <body>
+        <img src="./gorilla.png"></img>
+        <button onclick="gorilla()">ゴリラになる</button>
+        <p id="result"></p>
+    </body>
+
+    <script>
+        const result = document.getElementById("result");
+        
+        let currentNode = 'ウ';
+
+        const gorillaMap = {
+            'ウ': {
+                text: 'ウ',
+                next: () => {
+                    const random = Math.random();
+                    if (random < 0.5) {
+                        return 'ッ';
+                    } else {
+                        return 'ホ';
+                    };
+                },
+            },
+            'ッ': {
+                text: 'ッ',
+                next: () => {
+                    return 'ホ';
+                },
+            },
+            'ホ': {
+                text: 'ホ',
+                next: () => {
+                    const random = Math.random();
+                    if (random < 0.57) {
+                        return 'ホ';
+                    } else if (random < 0.64) {
+                        return 'ウ';
+                    } else if (random < 0.71) {
+                        return 'ー';
+                    } else if (random < 0.78) {
+                        return 'イ';
+                    } else {
+                        return '！';
+                    };
+                },
+            },
+            'ー': {
+                text: 'ー',
+                next: () => {
+                    return 'イ';
+                },
+            },
+            'イ': {
+                text: 'イ',
+                next: () => {
+                    const random = Math.random();
+                    if (random < 0.5) {
+                        return 'ウ';
+                    } else {
+                        return '！';
+                    };
+                },
+            },
+            '！': {
+                text: '！',
+                next: () => {
+                    return 'ウ';
+                },                
+            }
+        };
+
+        function gorilla() {
+            result.innerHTML += currentNode;
+            currentNode = gorillaMap[currentNode].next();
+        }
+    </script>
+</html>
